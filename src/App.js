@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import {observable } from 'mobx';
 import axios from 'axios';
 import {SampleImagesGroup} from './SampleImagesGroup';
+import {ResultImagesGroup} from './ResultImagesGroup';
 import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
@@ -34,7 +35,7 @@ class App extends Component {
             <Grid.Column width={8}>
               {this.showSingleSampleImage && !this.randomLoading ?
                 <Segment attached color='green'>
-                  <Image src={require("./images/database/"+ this.bigImg)} rounded centered/>
+                  <Image src={process.env.PUBLIC_URL + "/images/database/"+ this.bigImg} rounded centered/>
                 </Segment>
                 :<SampleImagesGroup imgList={this.randomImageList} clickSampleImage={this.clickSampleImage} imgSize="tiny"/>}
               {this.showSingleSampleImage && !this.randomLoading && 
@@ -46,7 +47,7 @@ class App extends Component {
             <Grid.Column width={8}>
               {this.searchLoading ?
                 <Loader active inline='centered'>Searching Images...</Loader>
-                :<SampleImagesGroup imgList={this.imgSearchResults} imgSize="small"/>
+                :<ResultImagesGroup imgList={this.imgSearchResults} imgSize="small"/>
               }
             </Grid.Column>
           </Grid.Row>
